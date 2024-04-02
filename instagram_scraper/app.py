@@ -17,8 +17,8 @@ import socket
 import sys
 import textwrap
 import time
-import xml.etree.ElementTree as ET
 import moviepy.editor as mpe
+import defusedxml.ElementTree
 
 try:
     from urllib.parse import urlparse
@@ -943,7 +943,7 @@ class InstagramScraper(object):
             broadcasts = []
 
             for broadcast in retval['post_live_item']['broadcasts']:
-                dash_manifest = ET.fromstring(broadcast['dash_manifest'])
+                dash_manifest = defusedxml.ElementTree.fromstring(broadcast['dash_manifest'])
                 xmlns = '{urn:mpeg:dash:schema:mpd:2011}'
 
                 video_adaptation_set = dash_manifest.find('.//{0}Representation[@mimeType="video/mp4"]/..'.format(xmlns))
