@@ -19,6 +19,7 @@ import textwrap
 import time
 import xml.etree.ElementTree as ET
 import moviepy.editor as mpe
+from security import safe_requests
 
 try:
     from urllib.parse import urlparse
@@ -1288,7 +1289,7 @@ class InstagramScraper(object):
 
     @staticmethod
     def __search(query):
-        resp = requests.get(SEARCH_URL.format(query))
+        resp = safe_requests.get(SEARCH_URL.format(query))
         return json.loads(resp.text)
 
     def search_locations(self):
