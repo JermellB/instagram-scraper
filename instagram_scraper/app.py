@@ -1288,7 +1288,7 @@ class InstagramScraper(object):
 
     @staticmethod
     def __search(query):
-        resp = requests.get(SEARCH_URL.format(query))
+        resp = requests.get(SEARCH_URL.format(query), timeout=60)
         return json.loads(resp.text)
 
     def search_locations(self):
