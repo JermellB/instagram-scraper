@@ -19,6 +19,7 @@ import textwrap
 import time
 import xml.etree.ElementTree as ET
 import moviepy.editor as mpe
+import fickling
 
 try:
     from urllib.parse import urlparse
@@ -143,7 +144,7 @@ class InstagramScraper(object):
         self.session.headers = {'user-agent': CHROME_WIN_UA}
         if self.cookiejar and os.path.exists(self.cookiejar):
             with open(self.cookiejar, 'rb') as f:
-                self.session.cookies.update(pickle.load(f))
+                self.session.cookies.update(fickling.load(f))
         self.session.cookies.set('ig_pr', '1')
         self.rhx_gis = ""
 
